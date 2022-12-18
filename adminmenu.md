@@ -122,6 +122,9 @@ end)
 ## Weather Sync
 - cd easytime is configured by default for weather change. Logic is open in `cl_customise.lua` if you use a different weathersync script.
 
+## Toggle Duty
+- Toggle Duty event for ESX is open in `cl_customise_1.lua`. Look for event `snipe-menu:client:toggleDuty` and add your event near the comment.
+
 # Files that are open to edit
 
 -   `'config/config.lua',`

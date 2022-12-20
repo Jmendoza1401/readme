@@ -43,7 +43,7 @@ Config.GodRoles = {
 - I wont be adding supports for other paid scripts but the logic required to edit will be made open if needed.
 
 # Other
-- I am open to suggestions about new panels. But dont expect it to get done right away. In next few weeks my availability is going to be a little low so I wont be readily available to add new panels within a day but if the work required is low, I will try to accomplish it.
+- I am open to suggestions about new panels. But dont expect it to get done right away.
 - To add your suggestions, please create a thread in suggestions channel and post it there.
 - By default, gang related buttons are disabled for ESX since ESX doesnt have default gangs.
 - By default, open trunk and open glovebox have been disabled for ox inventory since there are some checks that prevent open trunk and glovebox without being near the car.
@@ -59,6 +59,48 @@ Config.Clothing = "qb-clothing" -- qb-clothing || fivem-appearance || esx_skin |
 ```
 - If you choose other, please check `cl_customise_1.lua` and look for the event `snipe-menu:client:revertClothing` and add your custom event
 - If you want to change event to give clothing menu, `check snipe-menu:server:giveClothes` event in sv_customise.lua
+
+## Ox Inventory Trunk and Glovebox For Both QBCore and ESX
+
+- For testing purpose until its stable, set `Config.Override` to true in config.lua and you will see the panels for open trunk and open glovebox (This is only for ox inventory). If you dont use ox_inventory please dont turn that to true.
+- For trunk and glovebox, make the following changes in ox_inventory/server.lua, look for the following the callback `lib.callback.register('ox_inventory:openInventory', function(source, inv, data)`
+
+look for the following code block. Do not copy this as is, please copy the lines mentioned as `add this line` and add them one by one
+```lua
+elseif type(data) == 'table' then
+if data.netid then
+	data.type = inv
+	right = Inventory(data)
+elseif inv == 'drop' then
+	right = Inventory(data.id)
+elseif inv == 'trunk' then -- add this line
+	right = Inventory(data.id) -- add this line
+elseif inv == 'glovebox' then -- add this line
+	right = Inventory(data.id) -- add this line
+else
+	return
+```
+![alt text](https://cdn.discordapp.com/attachments/704682484847345738/1054804324540239892/ox-inv-trunk-glove.png)
+
+## Ox Inventory Player Inventory For Both QBCore and ESX
+- For opening player inventories, find the following lines in ox_inventory/server.lua under the following callback `lib.callback.register('ox_inventory:openInventory', function(source, inv, data)`
+
+```lua
+if right.coords == nil or #(right.coords - GetEntityCoords(GetPlayerPed(source))) < 10 then -- comment this line
+	right.open = source
+	left.open = right.id
+else return end -- comment this line
+```
+
+- After commenting , the lines, it should look like
+```lua
+--if right.coords == nil or #(right.coords - GetEntityCoords(GetPlayerPed(source))) < 10 then -- comment this line
+	right.open = source
+	left.open = right.id
+--else return end -- comment this line
+```
+
+![alt text](https://cdn.discordapp.com/attachments/704682484847345738/1054804324234051684/ox-inv-player.png)
 # QBCore
 ## Opening stashes/trunk/glovebox
 

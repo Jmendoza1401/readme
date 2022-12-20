@@ -101,8 +101,61 @@ else return end -- comment this line
 ```
 
 ![alt text](https://cdn.discordapp.com/attachments/704682484847345738/1054804324234051684/ox-inv-player.png)
+
+- Another Change
+- Go to ox_inventory/client.lua and look for this line  `client.interval = SetInterval(function()` near line 1120 or something depends on your changes and add the following block of code above that line and it should look like this
+```lua
+local isAdmin = false
+function SetAdmin()
+	isAdmin = true
+end
+exports('SetAdmin', SetAdmin)
+```
+![alt text](https://cdn.discordapp.com/attachments/704682484847345738/1054828985013514310/set-admin.png)
+
+- Inside the same SetInterval, add the 3 lines as mentioned(Do not copy the logic as is, just copy the lines mentioned)
+```lua
+client.interval = SetInterval(function()
+if invOpen == false then
+	playerCoords = GetEntityCoords(playerPed)
+
+	if currentWeapon and IsPedUsingActionMode(playerPed) then
+		SetPedUsingActionMode(playerPed, false, -1, 'DEFAULT_ACTION')
+	end
+	isAdmin = false -- add this line
+elseif invOpen == true then
+	if not canOpenInventory() then
+		client.closeInventory()
+	else
+		playerCoords = GetEntityCoords(playerPed)
+		if currentInventory then
+
+			if currentInventory.type == 'otherplayer' then
+				local id = GetPlayerFromServerId(currentInventory.id)
+				local ped = GetPlayerPed(id)
+				local pedCoords = GetEntityCoords(ped)
+				if not isAdmin then -- add this line
+					if not id or #(playerCoords - pedCoords) > 1.8 or not (client.hasGroup(shared.police) or canOpenTarget(ped))  then
+						client.closeInventory()
+						lib.notify({ id = 'inventory_lost_access', type = 'error', description = locale('inventory_lost_access') })
+					else
+						TaskTurnPedToFaceCoord(playerPed, pedCoords.x, pedCoords.y, pedCoords.z, 50)
+					end
+				end -- add this line
+			
+
+			elseif currentInventory.coords and (#(playerCoords - currentInventory.coords) > (currentInventory.distance or 2.0) or canOpenTarget(playerPed)) then
+				client.closeInventory()
+				lib.notify({ id = 'inventory_lost_access', type = 'error', description = locale('inventory_lost_access') })
+			end
+		end
+	end
+end		
+```	
+
+
 # QBCore
-## Opening stashes/trunk/glovebox
+## Opening stashes/trunk/glovebox (only for qb-inventory)
 
 Add the two following events at the end of the inventory/client/main.lua (do not add it at the beginning please!!)
 

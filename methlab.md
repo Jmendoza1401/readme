@@ -115,6 +115,18 @@ elseif itemData["name"] == "meth_powder" then
 		combinable = nil,
 		description = "Key to enter an area"
 	},
+	["crack_baggy"] = {
+		name = "crack_baggy",
+		label = "Crack Bag",                 
+		weight = 50,         
+		type = "item",         
+		image = "crack_baggy.png",     
+		unique = true,         
+		useable = false,     
+		shouldClose = true,    
+		combinable = nil,
+		description = "Small Bag of Crack"
+	},
 ```
 
 - Add the following snippet in modules/items/client.lua under the comment
@@ -143,6 +155,8 @@ end)
     ["sodium_benzoate"]        =     {["name"] = "sodium_benzoate",        ["label"] = "Sodium Benzoate",        ["weight"] = 1000,         ["type"] = "item",         ["image"] = "sodium_benzoate.png",         ["unique"] = false,     ["useable"] = false,     ["shouldClose"] = true,           ["combinable"] = nil,   ["description"] = "A alkaline solution used in Meth Labs"},
     ["propylene_glycol"]    =     {["name"] = "propylene_glycol",        ["label"] = "Propylene Glycol",        ["weight"] = 1000,         ["type"] = "item",         ["image"] = "propylene_glycol.png",     ["unique"] = false,     ["useable"] = false,     ["shouldClose"] = true,           ["combinable"] = nil,   ["description"] = "A acidic solution used in Meth Labs"},
 ["labkey"]    =     {["name"] = "labkey",        ["label"] = "Lab Key",        ["weight"] = 1000,         ["type"] = "item",         ["image"] = "labkey.png",     ["unique"] = false,     ["useable"] = false,     ["shouldClose"] = true,           ["combinable"] = nil,   ["description"] = "Key to enter an area"},
+	['crack_baggy'] 				 = {['name'] = 'crack_baggy', 			  	  	['label'] = 'Bag of Crack', 			['weight'] = 0, 		['type'] = 'item', 		['image'] = 'crack_baggy.png', 			['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,    ['combinable'] = nil,   ['description'] = 'To get happy faster'},
+
 ```
 # For Everyone
 - Shells 

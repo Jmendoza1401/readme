@@ -1,0 +1,62 @@
+
+- Revive 
+- NoClip
+- Give Item  
+- Spawn Car  
+- Fix Vehicle 
+- Clothes Menu
+- Player Info 
+- Announce
+- God Mode
+- Kick
+- Super Jump 
+- Remove Stress 
+- Teleport Coords 
+- Teleport Marker 
+- Teleport to Player 
+- Invisible 
+- Give Money 
+- Give Car  
+- Open Inventory 
+- Freeze Player 
+- Change Plate 
+- Spawn Objects 
+- Create Job Stashes 
+- Give Job  
+- Copy Coordinates
+- Toggle Blips 
+- Ban Player 
+- Show Coordinates
+- Clear Inventory 
+- Bring Player 
+- Clear Area 
+- Change Weather 
+- Change Time
+- Create Gang Stashes
+- Spectate Player 
+- Saved Locations 
+- Revive In Radius
+- Show Props 
+- Toggle Names 
+- Bennys  fa
+- Admin Car 
+- Refuel Vehicle 
+- Toggle Duty
+- Open Stash 
+- Open Trunk 
+- Open Glovebox 
+- Unban Player 
+- Change Ped Model
+- Ban Offline Player 
+- Warn
+- Give Gang 
+- Drunk Player 
+- Set Player on Fire 
+- Play Sound On Player
+- Slap Player In Sky 
+- Send Player To JailBo
+- Give Keys 
+- Infinite Ammo 
+- Change Vehicle State
+- Force Logout Player
+- Give Outfits 
